@@ -4,4 +4,8 @@
     'description': 'Learning Odoo', 
     'summary': 'This is a demo app',
     'license': 'AGPL-3',
+    'data': [
+        'views/menu.xml',
+        'views/patient.xml',
+    ]
 }
