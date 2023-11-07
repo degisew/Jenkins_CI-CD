@@ -8,4 +8,5 @@
       name="Operations"
       parent="menu-hospital-root"
       sequence="10"/>
+      
 </odoo>

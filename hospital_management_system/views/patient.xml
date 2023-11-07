@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="action_hospital_patient" model="ir.actions.act_window">
-        <field name="name">Patient</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">patient</field>
-        <field name="view_mode">tree,form</field>
-    </record>
 
-    <!-- <menuitem id="menu-hospital-patient"
-            name="Patient"
-            parent="menu-hospital-operations"
-            actions="action_hospital_patient"
-            sequence="10"/> -->
+    <data>
 
+        <record id="action_hospital_patient" model="ir.actions.act_window">
+            <field name="name">Patient</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">patient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu-hospital-patient"
+                name="Patient"
+                parent="menu-hospital-operations"
+                action="action_hospital_patient"
+                sequence="10"/>
+
+    </data>
 </odoo>
