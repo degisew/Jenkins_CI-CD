@@ -3,7 +3,7 @@ from odoo import models, fields
 
 class Patient(models.Model):
     _name = 'patient'
-    _description = " A model that stores the patients data",
+    _description = "A model that stores the patients data"
 
     name = fields.Char(string='Name', required=True)
     age = fields.Integer(string='Age')
