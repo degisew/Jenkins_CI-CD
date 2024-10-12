@@ -1,41 +1,44 @@
-pipline {
-agent any
-triggers{
-  pollSCM('* * * * *')  // Optional: Polling as a fallback
-}
-stages{
-  stage("Clone Repo") {
-    steps {
-      // Clone the GitHub repository
-      git url: 'https://github.com/degisew/Jenkins_CI-CD.git', branch: 'main'
+pipeline {
+    agent any
+    triggers {
+        pollSCM('* * * * *')  // Poll every minute
     }
-  }
-  stage("Install Dependencies") {
-    steps {
-      script {
-        python venv ~/.virtualenvs/jenkins
-        source ~/.virtualenvs/jenkins/bin/activate
-        sh 'pip install -r requirements.txt'
-      }
+    stages {
+        stage("Clone Repo") {
+            steps {
+                // Clone the GitHub repository
+                git url: 'https://github.com/degisew/Jenkins_CI-CD.git', branch: 'main'
+            }
+        }
+        stage("Install Dependencies") {
+            steps {
+                script {
+                    // Create a virtual environment
+                    sh 'python3 -m venv ~/.virtualenvs/jenkins'
+                    
+                    // Activate the virtual environment and install dependencies
+                    sh '. ~/.virtualenvs/jenkins/bin/activate && pip install -r requirements.txt'
+                }
+            }
+        }
+        stage("Run Tests") {
+            steps {
+                script {
+                    // Run tests
+                    sh '. ~/.virtualenvs/jenkins/bin/activate && pytest tests/'
+                }
+            }
+        }
     }
-  }
- stage("Run Tests") {
-   steps{
-    script{
-      sh 'pytest tests/'
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Pipeline succeeded.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
     }
-  }
-}
-}
-post {
-  always {
-    echo 'Pipeline finished.'
-   }
-  success {
-    echo 'Pipeline succeeded.'
-  }
-  failure {
-    echo 'Pipeline failed.'
-  }
-}
 }
