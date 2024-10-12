@@ -1,6 +1,5 @@
 pipline {
 agent any
-options {}
 environment {}
 triggers{
   pollSCM('* * * * *')  // Optional: Polling as a fallback
