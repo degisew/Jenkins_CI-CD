@@ -1,1 +1,2 @@
-print("Hello, Jenkins")
+def greet():
+    return "Hello, Jenkins"
